@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lobster&family=Merriweather:wght@300&family=Oswald&family=Roboto&family=Satisfy&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #8e75e4;
+}
+p{
+  font-family: Merriweather,cursive;
+}
+.abc{
+  font-family: satisfy,cursive;
+}
+.container2{
+    width: 100%;
+    display: flex;
+    max-width: 850px;
+    background: #ded9ee;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+#profile{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom:20px ;
+    object-fit: cover;
+}
+
+h2{
+    margin: 20px;
+    color: #7464bc;
+    text-align: center;
+    font-weight: bolder;
+    font-family: Koushan script,cursive;
+}
+
+h3 {
+  color: #7464bc;
+  text-align: center;
+  font-weight: bolder;
+  font-family: Oswald,sans-serifx;
+}
+
+.txt{
+  text-align: center;
+  color: #8e75e4;
+  font-size: ;
+}
+.prof{
+  margin-top:50px ;
+
+}
+h4{
+  font-family: Oswald,sans-serif;
+}
+a{
+  font-family: Oswald,cursive;
+}
+.a{
+  font-family: satisfy,cursive;
+  font-size: x-large;
+}
+
+.container1 {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 57px;
+  background: #ded9ee;
+  border-bottom-left-radius: 15px ;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.blog{
+    width: 100%;
+    display: flex;
+    max-width: 450px;
+    background: #ded9ee;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.login{
+    width: 400px;
+}
+form{
+    width: 250px;
+    margin: 60px auto;
+}
+h1{
+    margin: 20px;
+    color: #7464bc;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-family: Oswald,sans-serif;
+}
+
+p{
+    text-align: center;
+    margin: 10px;
+}
+hr{
+    border-top: 2px solid #b52b79;
+}
+
+.pic img{
+    width: 450px;
+    height: 100%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+form label{
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px;
+}
+input{
+    width: 100%;
+    margin: 2px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+textarea{
+    width: 100%;
+    margin: 2px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+button{
+    border: none;
+    outline: none;
+    padding: 8px;
+    width: 252px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    background: #7464bc;
+    cursor: pointer;
+}
+
+p{
+    margin: 20px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.fo{
+  font-family: Oswald,sans-serif;
+}
+
+
+/*-------------Nav-------------*/
+#nav-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#nav {
+  @include shadow-box;
+  display: flex;
+  flex-direction: column;
+  font-family: $headings-font;
+  height: 4em;
+  overflow: hidden;
+
+  &.nav-visible {
+    height: 100%;
+    overflow: auto;
+  }
+}
+
+.nav {
+  display: flex;
+  height: 4em;
+  line-height: 4em;
+  flex-grow: 1;
+}
+
+.nav-link,
+.logo {
+  padding: 0 1em;
+}
+
+span.gradient {
+  @include main-gradient;
+  padding: 0 1em;
+  position: relative;
+  right: 1em;
+  margin-right: auto;
+
+  &:hover {
+    animation-name: logo-hover;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
+  }
+}
+
+h1.logo {
+  font-weight: 300;
+  font-size: 1.75em;
+  line-height: 0.75em;
+  color: $color-neutral-lt;
+}
+
+h1.logo #{$a-tags} {
+  text-decoration: none;
+  color: $color-neutral-lt;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  text-align: center;
+  border-top: 0.5px solid $color-neutral-med;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+.btn-nav {
+  color: $color-primary;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+@media (min-width: 800px) {
+  #nav-wrapper {
+    overflow: hidden;
+  }
+
+  #nav {
+    overflow: hidden;
+    flex-direction: row;
+  }
+
+  .nav-link {
+    border-top: none;
+  }
+
+  .right {
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+    left: 1.5em;
+    height: auto;
+  }
+
+  .btn-nav {
+    display: none;
+  }
+
+  .nav #{$a-tags-no-hov} {
+    &.active {
+      @include main-gradient;
+      color: #fff;
+    }
+  }
+
+  .nav-link-span {
+    @include unskew;
+    display: inline-block;
+  }
+
+  .nav-link {
+    @include skew;
+    color: #f857a8;
+    text-decoration: none;
+
+    &:last-child {
+      padding-right: 5em;
+    }
+  }
+
+
+
+@keyframes logo-hover {
+  20% {
+    padding-right: 0em;
+  }
+  100% {
+    padding-right: 5em;
+  }
+}
+
+#profile1 {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+#profile2 {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.add{
+  width: 150px;
+  height:150px;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+
+}
+
+.pbody {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color:#8e75e4 ;
+}
+
+.post {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #ded9ee;
+  margin: auto;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.username {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: #003569;
+  font-family: satisfy,cursive;
+}
+
+.post-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+  width: 550px;
+  justify-content: center;
+}
+
+.likes{
+  color: lightcoral;
+
+}
+
+.caption {
+  font-size: 16px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.comment-username {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 15px;
+  margin-top: 15px;
+  color: #003569;
+}
+
+.comment-text {
+  font-size: 14px;
+  margin-top: 17px;
+  margin-left: 40px;
+  line-height: 1.5;
+  width: 80%;
+}
+
+.comment-text.current-user {
+  color: #003569;
+}
+
+.fa-heart-o {
+  color: red;
+  cursor: pointer;
+}
+
+.fa-heart {
+  color: red;
+  cursor: pointer;
+}
+
+ .comment-input {
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   display: flex;
+   margin: 20px 0;
+   width: 100%;
+ }
+
+ .comment-input textarea {
+   border: none;
+   flex-grow: 1;
+   font-size: 1em;
+   padding: 10px;
+   resize: none;
+   height: 50px;
+ }
+
+.b {
+  border: none;
+  outline: none;
+  padding: 8px;
+  width: 100px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 48px;
+  margin-top: 3px;
+  margin-left: 5px;
+  background: #b52b79;
+}
+
+.b:hover {
+  background: #7464bc;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form | By Code Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<body>
+    <div>
+        <nav class="navbar fixed-top navbar-expand navbar-light" style="background-color:#b52b79;padding: 10px;">
+            <h2 style="padding-left: 20px; color: #f857a8; margin: 0px;">Welcome {{user.username}}</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse right" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active" style="font-size: x-large; margin-right: 20px;">
+                        <a class="nav-link button" href="{{ url_for('search',uid=user.id) }}">Search</a>
+                    </li>
+                    <li class="nav-item" style="font-size: x-large; margin-right: 20px;">
+                        <a class="nav-link" href="{{ url_for('feed',uid=user.id) }}">My Feed</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 30px; font-size: x-large;">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container1 row">
+        <div class="column" style="width:25%">
+            <img id="profile" src="{{ url_for('static', filename='uploads/'+ user.name) }}" alt="">
+            <a style="position:absolute; top:30px; left:270px;" href="{{ url_for('pedit',uid=user.id)}}"><img src="../static/images/pedit.png" style="width: 40px; height:40px ;" alt=""></a>
+        </div>
+        <div class="column prof" style="width:25%">
+            <h2>Total Posts</h2>
+            <div>
+                <h1 class="txt">{{ user.blogs|length }}</h1>
+            </div>
+        </div>
+        <div class="column prof" style="width:20%">
+            <h2>Followers</h2>
+            <div>
+                <a href="{{ url_for('followers',uid=user.id) }}"><h1 class="txt">{{ user.followers|length }}</h1></a>
+            </div>
+        </div>
+        <div class="column prof" style="width:350px">
+            <h2>Following</h2>
+            <div>
+                <a href="{{ url_for('following',uid=user.id) }}"><h1 class="txt">{{ user.following|length }}</h1></a>
+            </div>
+        </div>
+        <div>
+            <h3>{{ user.desc }}</h3>
+        </div>
+    </div>
+    <div class="container" style="position: absolute; top:320px;">
+        <div class="row" style="position: relative; top:20px; margin-bottom: 50px; margin-top: 20px;">
+            {%for post in user.blogs|reverse%}
+            <div class="col-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='uploads/'+ post.name) }}" alt="Image Not Available 404"
+                        class="card-img-top" style="width:414px;height: 414px; object-fit: cover;">
+                    
+                        <a style="position: absolute; top: 15px; left:370px; width: 70px; height:70px;"
+                        href="{{ url_for('post',uid=user.id,pid=post.id) }}"><img style="width: 30px; height:30px;"
+                            src="{{ url_for('static', filename='images/expand.png')}}" alt=""></a>
+
+                    <a style="position: absolute; top: 420px; left:320px; width: 35px; height:35px;"
+                        href="/edit/{{ user.id }}/{{ post.id }}"><img style="width: 50px; height:50px; border-radius: 50%;"
+                            src="{{ url_for('static', filename='images/'+ 'edit.png') }}" alt=""></a>
+                    
+                    <a style="position: absolute; top: 430px; left:372px; width: 70px; height:70px;"
+                        href="/delete/{{ user.id }}/{{ post.id }}"><img style="width: 30px; height:30px;"
+                            src="{{ url_for('static', filename='images/'+ 'delete.png') }}" alt=""></a>
+                    <div style="background-color:#ded9ee ;"class="card-body">
+                        {% if user.id in post.likes|map(attribute="uid")|list %}
+                        <div id="heart" class="likes" style="position: absolute;">
+                            <a style="display: inline-block;" href="{{ url_for('like',uid=user.id,pid=post.id,s=-2) }}"><i style="font-size:30px"
+                                    class="fa fa-heart" aria-hidden="true"></i></a>
+                            <a style="color:red" href="{{ url_for('dlike',uid=user.id,pid=post.id) }}">
+                                <h3 style="font-size: 30; font-weight: bold;color: red; display: inline-block;">{{post.likes|length }}</h3>
+                            </a>
+                        </div>
+                        {% else %}
+                        <div id="heart" class="likes" style="position: absolute;">
+                            <a style="display: inline-block;" href="{{ url_for('like',uid=user.id,pid=post.id,s=-2) }}"><i
+                                    style="font-size:30px" class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            <a href="{{ url_for('dlike',uid=user.id,pid=post.id) }}">
+                                <h3 style="font-size: 30; font-weight: bold; display: inline-block;color: red;">{{post.likes|length }}</h3>
+                            </a>
+                        </div>
+                        {% endif %}
+                        <div class="row">
+                        <h4 style="text-align: center;" class="card-title">{{ post.title }}</h4>
+                        </div>
+                        <p Lorem class="card-text">{{ post.caption }}</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+            {%endfor%}
+        </div>
+    </div>   
+    <a href="{{ url_for('blog',uid=user.id)}}""><img class="add"
+        src="{{ url_for('static', filename='images/'+ 'add.png') }}" alt="hello"></a>
+</body>
+
+</html>

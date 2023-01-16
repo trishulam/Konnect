@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form | By Code Info</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/style.css">
+
+<body>
+    <div>
+        <nav class="navbar fixed-top navbar-expand navbar-light" style="background-color:#b52b79;padding: 10px;">
+            <h2 style="padding-left: 20px; color: #f857a8; margin: 0px;">Welcome {{user.username}}</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse right" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active" style="font-size: x-large; margin-right: 20px;">
+                        <a class="nav-link" href="{{ url_for('feed',uid=user.id) }}">My Feed</a>
+                    </li>
+                    <li class="nav-item" style="font-size: x-large; margin-right: 20px;">
+                        <a class="nav-link" href="{{ url_for('profile',uid=user.id) }}">My Profile</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 30px; font-size: x-large;">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="profile-content" style="position: absolute ; top: 70px;">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="tab-content p-0">
+                    <div class="tab-pane fade active show" id="profile-followers">
+                        <div class="list-group">
+                            {% for others in users %}
+                            {% if others.id != user.id %}
+                            <div class="list-group-item d-flex align-items-center" style="background-color: #ded9ee ;">
+                                <img src="{{ url_for('static', filename='uploads/'+ others.name) }}" alt=""
+                                    id="profile1" class="ml-n2" style="margin-right: 20px;" />
+                                <div class="flex-fill pl-3 pr-3" style="margin-right: 40px;">
+                                    <div id="username"><a class="a" href="{{ url_for('otherprofile', uid=user.id, fid=others.id) }}" class="text-dark font-weight-600">{{ others.username }}</a></div>
+                                </div>
+                                {% if others in user.following %}
+                                <a href="/followers/unfollow/{{user.id}}/{{others.id}}" class="btn fo btn-outline-primary" ,method="POST">UnFollow</a>
+                                {% else %}
+                                <a href="/followers/follow/{{user.id}}/{{others.id}}" class="btn fo btn-outline-primary" ,method="POST">Follow</a>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
